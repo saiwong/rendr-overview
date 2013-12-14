@@ -83,6 +83,10 @@ $ grunt server
 
 # Rendr adds the C in MVC
 
+!
+
+## My Backbone needs support
+
 - Backbone is typically MVVP
 	- too much controller logic is typically placed in the view
 	- views become monolithic
@@ -130,7 +134,7 @@ $ grunt server
 # routes.js
 match( '/cones/:name', 'cones#view' );
 
-# controllers\cones_controller.js
+# controllers/cones_controller.js
 view: function(params, callback){
   var spec = { model: {
         model: 'cones',
@@ -155,7 +159,7 @@ view: function(params, callback){
 ## Typical view
 
 ```javascript
-# views\cones.js
+# views/cones.js
 getTemplateData: function(){
   var d = this.model.toJSON( );
   d.message = 'Do you like ' + d.name + '?';
