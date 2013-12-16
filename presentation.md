@@ -115,7 +115,7 @@ $ grunt server
 4. Browser renders page and loads related JS script files
 5. Browser bootstraps any data that was used to load the page into scope
 	- session data (if logged in) 
-	- list of athlete models
+	- list of ice cream cones
 6. Browser initializes Backbone
 
 !
