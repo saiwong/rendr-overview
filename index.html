@@ -62,7 +62,10 @@
     z-index:-1;
    }
    code {
-       color: rgb(235, 174, 108);
+       color: black;
+  }
+  pre.prettyprint {
+    background-color: #eee;
   }
    .for-print .content-holder {
         width: 100%;
@@ -97,12 +100,16 @@
  /* End styling */
 </style>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/prettify.js"></script>
+<link href="https://google-code-prettify.googlecode.com/svn/loader/prettify.css" type="text/css" rel="stylesheet" />
 <script>
 if (!window.jQuery) {
     document.write('<script src="jquery.min.js"><\/script>');
 }
 </script>
 <script type="text/javascript" src="showdown.js"></script>
+<script type="text/javascript" src="github.js"></script>
+<script type="text/javascript" src="prettify.js"></script>
 </head>
 <body tabindex="1">
 <div class="for-screen">
@@ -161,6 +168,8 @@ Present.showSlide = function(slide) {
   $('.for-screen .centered').html(Present.slides[Present.currentSlide]);
   $('.slideCount select').val(this.currentSlide);
   window.location.hash = '#' + (Present.currentSlide + 1);
+
+  prettyPrint();
 };
 Present.nextSlide = function() {
   if (Present.currentSlide < Present.slides.length-1) {
@@ -201,7 +210,7 @@ Present.reload = function() {
         cache: false,
         success: function(data) {
             if (data.length>0) {
-                converter = new Showdown.converter();
+                converter = new Showdown.converter({ extensions: [ 'prettify', 'github' ]});
                 var converted = converter.makeHtml(data);
                 Present.slides = converted.split('<p>!</p>');
                 Present.buildSlideCounter();
